@@ -46,9 +46,7 @@ TEMPLATES = [{
 
 WSGI_APPLICATION = "core.wsgi.application"
 
-# Optional Channels
 ASGI_APPLICATION = "core.asgi.application"
-# CHANNEL_LAYERS can be added when enabling Redis in production
 
 DATABASES = {
     "default": {
@@ -59,7 +57,7 @@ DATABASES = {
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework_simplejwt.authentication.JWTAuthentication",  # <-- string, not class
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
     "DEFAULT_PERMISSION_CLASSES": (
         "rest_framework.permissions.IsAuthenticated",
