@@ -1,4 +1,4 @@
-// src/context/AuthContext.tsx
+
 import React, { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import api from '../api/axios'
 import { jwtDecode } from 'jwt-decode'
@@ -34,12 +34,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [user, setUser] = useState<{ username?: string } | null>(null)
   const [isLoading, setIsLoading] = useState(true)
 
-  // Initialize from sessionStorage on first load
   useEffect(() => {
     const access = sessionStorage.getItem('access')
     const refresh = sessionStorage.getItem('refresh')
 
-    // If access is expired but refresh exists, try refresh flow once at boot
     const boot = async () => {
       try {
         if (access && !tokenExpired(access)) {
@@ -75,7 +73,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     boot()
   }, [])
 
-  // Keep other tabs in sync (logout/login across tabs)
   useEffect(() => {
     const onStorage = (e: StorageEvent) => {
       if (e.key === 'access' || e.key === 'refresh') {
