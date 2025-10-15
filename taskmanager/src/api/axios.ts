@@ -1,19 +1,17 @@
-// src/api/axios.ts
+
 import axios from 'axios'
 
-// For dev, we'll use the Vite proxy ("/api" → "http://localhost:8000")
 const api = axios.create({
-  baseURL: '/api', // This matches the proxy rule in vite.config.ts
+  baseURL: '/api', 
 })
 
-// Attach access token to every request if it exists
 api.interceptors.request.use((config) => {
   const token = sessionStorage.getItem('access')
   if (token) config.headers.Authorization = `Bearer ${token}`
   return config
 })
 
-// Handle token refresh on 401 errors
+
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
