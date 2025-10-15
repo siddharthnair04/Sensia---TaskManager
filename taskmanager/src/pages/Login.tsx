@@ -21,7 +21,6 @@ export default function Login() {
       await login(username.trim(), password)
       navigate(from, { replace: true })
     } catch (err: any) {
-      // Axios errors may have .response.data, but keep it simple:
       setError('Invalid username or password')
     } finally {
       setSubmitting(false)
